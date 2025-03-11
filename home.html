@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Quest by Mojalefa Nyane</title>
+    <style>
+        /* Password Gate Styles */
+        body {
+            background: #0a0a1a;
+            color: #00ff9d;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #gatekeeper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .access-panel {
+            background: #001015;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #00ff9d;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            text-align: center;
+        }
+
+        input {
+            background: #000;
+            border: 1px solid #00ff9d;
+            color: #00ff9d;
+            padding: 0.8rem;
+            margin: 1rem;
+            width: 200px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* Main Content Styles */
+        .container {
+            display: none;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .challenge-box {
+            border: 2px solid #00ff9d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .logo {
+            max-width: 300px;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #002200;
+            color: #00ff9d;
+            border: 1px solid #00ff9d;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .hidden { display: none; }
+        .shake { animation: shake 0.5s; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div id="gatekeeper">
+        <div class="access-panel">
+            <h2>🔒 Secure Cyber Gateway</h2>
+            <input type="password" id="accessCode" placeholder="Enter Access Code" autocomplete="off">
+            <p style="color:#004400">challenge by Mojalefa Nyane</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="challenge-box">
+            <h2>🕵️ Cyber Challenge</h2>
+            <img src="logo.png" class="logo" alt="Cyber Quest Logo">
+            <p>There's a flag hidden somewhere on this page!</p>
+            <button onclick="toggleHint()">Need a Hint?</button>
+            <div id="hint" class="hidden">
+                <p>There are no hinds</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- you might need a private key: 141 -->
+    <!-- you might need a private key: CyberSquad -->
+
+    <script>
+        // Password Check
+        document.addEventListener('DOMContentLoaded', () => {
+            const accessCode = document.getElementById('accessCode');
+            const gatekeeper = document.getElementById('gatekeeper');
+            const container = document.querySelector('.container');
+
+            accessCode.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    if (accessCode.value === 'CyberSquad') {
+                        gatekeeper.remove();
+                        container.style.display = 'block';
+                    } else {
+                        accessCode.classList.add('shake');
+                        setTimeout(() => accessCode.classList.remove('shake'), 500);
+                        accessCode.value = '';
+                    }
+                }
+            });
+        });
+
+        function toggleHint() {
+            const hint = document.getElementById('hint');
+            hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
